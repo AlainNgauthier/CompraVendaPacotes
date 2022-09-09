@@ -8,32 +8,28 @@
 			<br />
 			<div>
 				<div class="col-md-6">
-					<h1 th:text="#{login.message}"></h1>
+					<h1>LOGIN</h1>
 					<form th:action="@{/login}" method="post">
 						<div th:if="${param.error}">
 							<div class="alert alert-danger">
-								<span th:text="#{login.error}"></span>
+								<span>Nome de usuário e/ou senha inválida</span>
 							</div>
 						</div>
 						<div class="form-group">
-							<label for="username" th:text="#{login.username}"></label>: <input type="text" id="username"
-								name="username" class="form-control" autofocus="autofocus"
-								th:placeholder="#{login.username}">
+							<label for="username">Nome</label>: <input type="text" id="username" name="username" class="form-control" autofocus="autofocus" placeholder="Nome">
 						</div>
 						<div class="form-group">
-							<label for="password" th:text="#{login.password}"></label>: <input type="password" id="password"
-								name="password" class="form-control" th:placeholder="#{login.password}">
+							<label for="password">Senha</label>: <input type="password" id="password" name="password" class="form-control" placeholder="Senha">
 						</div>
 						<div class="form-group">
 							<div class="row">
 								<div class="col-sm-3 col-sm-offset-3">
-									<input type="submit" name="login-submit" id="login-submit"
-										class="form-control btn btn-info" th:value="#{login.button}">
+									<input type="submit" name="login-submit" id="login-submit" class="form-control btn btn-info" th:value="#{login.button}">
 								</div>
 							</div>
 							<div class="row">
 								<a class="nav-link" th:href="@{/pacotes/listar}">
-									<span class="form-control btn btn-info"th:text="#{action.list.packages}"></span>
+									<span class="form-control btn btn-info">Lista de Pacotes</span>
 								</a>
 							</div>
 						</div>

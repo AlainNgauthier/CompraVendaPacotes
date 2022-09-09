@@ -3,9 +3,8 @@ package br.ufscar.dc.dsw.conversor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;
-
 import br.ufscar.dc.dsw.domain.Agency;
-import br.ufscar.dc.dsw.service.spec.IAgenciaService;
+import br.ufscar.dc.dsw.service.spec.IAgencyService;
 
 @Component
 public class AgencyConversor implements Converter<String, Agency>{

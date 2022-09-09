@@ -47,7 +47,7 @@ public class AgencyController {
 		agencia2.setSenha(encoder.encode(agencia.getSenha()));
 		
         service.salvar(agencia2);
-		attr.addFlashAttribute("sucess", "Agencia inserida com sucesso.");
+		attr.addFlashAttribute("sucess", "Agencia criada com sucesso.");
 		return "redirect:/agencias/listar";
 	}
 	
@@ -68,17 +68,17 @@ public class AgencyController {
 		agencia2.setSenha(encoder.encode(agencia.getSenha()));
 		
         service.salvar(agencia2);
-		attr.addFlashAttribute("sucess", "Agencia editada com sucesso.");
+		attr.addFlashAttribute("sucess", "Agencia atualizada com sucesso.");
 		return "redirect:/agencias/listar";
 	}
 	
 	@GetMapping("/excluir/{id}")
 	public String excluir(@PathVariable("id") Long id, ModelMap model) {
 		if (service.temPacotes(id)) {
-			model.addAttribute("fail", "Agencia não excluída. Possui pacote(s) vinculado(s).");
+			model.addAttribute("fail", "Agencia não removida. Possui pacote(s) vinculado(s).");
 		} else {
 			service.excluir(id);
-			model.addAttribute("sucess", "Agencia excluída com sucesso.");
+			model.addAttribute("sucess", "Agencia removida com sucesso.");
 		}
 		return listar(model);
 	}

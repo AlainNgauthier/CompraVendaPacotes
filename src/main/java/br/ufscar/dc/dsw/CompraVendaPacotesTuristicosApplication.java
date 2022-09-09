@@ -25,6 +25,7 @@ import br.ufscar.dc.dsw.domain.Pacote;
 @SpringBootApplication
 public class CompraVendaPacotesTuristicosApplication {
 	
+	//remover o log
 	private static final Logger log = LoggerFactory.getLogger(CompraVendaPacotesTuristicosApplication.class);
 
 	public static void main(String[] args) {
@@ -74,7 +75,7 @@ public class CompraVendaPacotesTuristicosApplication {
 			
 			// Registering Agency
 			try {
-				log.info("registering Agency 1");
+				log.info("registering DreamAgency");
 				Agency agency1 = new Agency();
 				agency1.setEmail("dreamagency@gmail.com");
 				agency1.setSenha(encoder.encode("DreamAgency"));
@@ -156,10 +157,10 @@ public class CompraVendaPacotesTuristicosApplication {
 
 			// Registering Purchase
 			try {
-				log.info("registering Compra Cliente 2");
+				log.info("registering Purchase Cliente 2");
 				Purchase purchase1 = new Purchase();
 				purchase1.setCliente(clienteDAO.getUserByEmail("patricia@gmail.com"));
-				purchase1.setPacote(pacoteDAO.getPacoteByName("Travel: X City"));
+				purchase1.setPacote(pacoteDAO.getPacoteByName("Travel: XX City"));
 				purchase1.setPreco(BigDecimal.valueOf(1000.00));
 				purchaseDAO.save(purchase1);
 				log.info("Purchase Cliente 2 registered");

@@ -13,9 +13,9 @@ public interface IClientDAO extends CrudRepository<Client, Long>{
 	Client findById(long id);
     Client findByCpf(String cpf);
     List<Client> findAll();
-    Client save(Client agencia);
+    Client save(Client cliente); // agencia
 	void deleteById(Long id);
     
-    @Query("SELECT c FROM Cliente c WHERE c.email = :email")
+    @Query("SELECT c FROM Client c WHERE c.email = :email")
     public Client getUserByEmail(@Param("email") String email);
 }

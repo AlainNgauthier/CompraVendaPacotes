@@ -22,7 +22,6 @@ import br.ufscar.dc.dsw.security.UsuarioDetails;
 import br.ufscar.dc.dsw.service.spec.IClientService;
 import br.ufscar.dc.dsw.service.spec.IPurchaseService;
 import br.ufscar.dc.dsw.service.spec.IPacoteService;
-//import br.ufscar.dc.dsw.util.Mail;
 
 
 @Controller
@@ -53,8 +52,6 @@ public class PurchaseController {
 	@GetMapping("/listar")
 	public String listar(ModelMap model) {			
 		model.addAttribute("compras",service.buscarTodosPorCliente(this.getCliente()));
-		
-		//System.out.println("\n\n\n\nOPAAAAAAAAAAAAAAAA\n\n\n\n\n\n" + service.buscarTodosPorCliente(this.getCliente()).get(0).getPacote().getNome());
 		return "compra/lista";
 	}
 	
@@ -72,13 +69,6 @@ public class PurchaseController {
 		compra.setPreco(pacote.getPreco());
 		
 		service.salvar(compra);
-
-// Envia e-mail
-//		try {
-//            Mail email = new Mail();
-//            email.sendMail(this.getCliente().getEmail());
-//        } catch (Exception e){
-//        }
 		
 		attr.addFlashAttribute("sucess", "Compra inserida com sucesso.");
 		return "redirect:/compras/listar";
