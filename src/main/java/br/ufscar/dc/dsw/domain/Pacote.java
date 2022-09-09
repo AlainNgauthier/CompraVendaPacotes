@@ -42,8 +42,8 @@ public class Pacote  extends AbstractEntity<Long> {
     @Column(nullable = false, length = 255)
     private String destinos;
 
-    @Column(nullable = false, length = 255)
-    private String fotos;
+//    @Column(nullable = false, length = 255)
+//    private String fotos;
 
     public String getNome() {
         return this.nome;
@@ -101,12 +101,12 @@ public class Pacote  extends AbstractEntity<Long> {
         this.destinos = destinos;
     }
 
-    public String getFotos() {
-        return this.fotos;
-    }
+//    public String getFotos() {
+//        return this.fotos;
+//    }
 
-    public void setFotos(String fotos) {
-        this.fotos = fotos;
-    }
+//    public void setFotos(String fotos) {
+//        this.fotos = fotos;
+//    }
 
 }
