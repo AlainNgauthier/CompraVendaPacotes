@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html layout:decorate="~{layout}" xmlns:th="http://www.thymeleaf.org"
+xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity">
+<head>
+<meta charset="UTF-8" />
+</head>
+<body>
+	<section class="layout-content" layout:fragment="corpo">
+		<nav class="navbar navbar-expand-md bg-light">
+			<div class="collapse navbar-collapse" id="navbarsExampleDefault">
+				<ul class="navbar-nav mr-auto">
+					<li class="nav-item active">
+						<span th:text="#{list.customer}"></span>
+					</li>
+				</ul>
+				<a class="btn btn-primary btn-md" th:href="@{/clientes/cadastrar}" role="button">  
+					<span th:text="#{new.customer}"></span>
+				</a>
+			</div>
+		</nav>
+		<div class="container" id="listagem">
+			<div th:replace="fragments/alert"></div>
+			<div class="table-responsive">
+				<table class="table table-striped table-hover table-sm">
+					<thead>
+						<tr>
+							<th>#</th>
+							<th th:text="#{info.name}"></th>
+							<th th:text="#{info.mail}"></th>
+							<!-- <th th:text="#{info.role}"></th> -->
+							<!-- <th th:text="#{info.enabled}"></th> -->
+							<th th:text="#{info.cpf}"></th>
+							<th th:text="#{info.tel}"></th>
+							<th th:text="#{info.sex}"></th>
+							<th th:text="#{info.birth}"></th>
+							<div sec:authorize="hasRole('ROLE_ADMIN')">
+							<th th:text="#{action}"></th>
+						</div>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="cliente : ${clientes}">
+							<td th:text="${cliente.id}"></td>
+							<td th:text="${cliente.nome}"></td>
+							<td th:text="${cliente.email}"></td>
+							<!-- <td th:text="${cliente.funcao}"></td> -->
+							<!-- <td th:text="${cliente.ativo}"></td> -->
+							<td th:text="${cliente.cpf}"></td>
+							<td th:text="${cliente.telefone}"></td>
+							<td th:text="${cliente.sexo}"></td>
+							<td th:text="${cliente.dataNasc}"></td>
+							<div sec:authorize="hasRole('ROLE_ADMIN')">
+								<td colspan="2">
+									<a class="btn btn-info btn-sm" th:href="@{/clientes/editar/{id} (id=${cliente.id}) }"
+										role="button"> 
+										<span class="oi oi-brush" title="Editar" aria-hidden="true"> </span>
+									</a>
+									<button
+										th:id="${'btn_clientes/excluir/' + cliente.id}"
+										type="button" class="btn btn-danger btn-sm"
+										data-toggle="modal" data-target="#myModal">
+										<span class="oi oi-circle-x" title="Excluir" aria-hidden="true"></span>
+									</button>
+								</td>
+							</div>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+		<div th:replace="fragments/modal :: modal"></div>
+	</section>
+</body>
+</html>

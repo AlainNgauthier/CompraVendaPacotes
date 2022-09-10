@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html layout:decorate="~{layout}">
+<head>
+</head>
+<body>
+	<section class="layout-content" layout:fragment="corpo">
+		<div class="container" id="cadastro">
+			<div th:replace="fragments/alert"></div>
+			<form th:action="@{/compras/salvar}" th:object="${compra}"
+				method="POST">
+				<div th:replace="fragments/validacao :: validacao"></div>
+				<div class="form-row">
+					<div class="form-group col-md-12">					
+						<table class="table table-striped table-hover table-sm">
+							<thead>
+								<tr>
+									<th>#</th>
+									<th th:text="#{info.name}"></th>
+									<th th:text="#{object.agency}"></th>
+									<th th:text="#{info.date}"></th>
+									<th th:text="#{info.duration}"></th>
+									<th th:text="#{info.price}"></th>
+									<th th:text="#{info.description}"></th>
+									<th th:text="#{info.destinations}"></th>
+									<th th:text="#{action}"></th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr th:each="pacote : ${pacotes}">
+									<td>
+										<input type="radio" th:id="${pacote.id}" name="pacote" th:value="${pacote.id}" th:field="*{pacote}" required>
+									</td>
+									<td th:text="${pacote.id}"></td>
+									<td th:text="${pacote.nome}"></td>
+									<td th:text="${pacote.agencia.nome}"></td>
+									<td th:text="${pacote.data}"></td>
+									<td th:text="${pacote.duracao}"></td>
+									<td th:text="|R$ ${#numbers.formatDecimal(pacote.preco,2,2,'COMMA')}|"></td>
+									<td th:text="${pacote.descricao}"></td>
+									<td th:text="${pacote.destinos}"></td>
+								</tr>
+							</tbody>
+						</table>
+						<div class="invalid-feedback">
+							<span th:errors="*{pacote}"></span>
+						</div>
+					</div>
+				</div>				
+				<input type="hidden" th:field="*{cliente}" id="cliente">
+				<button type="submit" th:text="#{action.save}"
+					class="btn btn-primary btn-sm"></button>
+			</form>
+		</div>
+	</section>
+</body>
+</html>

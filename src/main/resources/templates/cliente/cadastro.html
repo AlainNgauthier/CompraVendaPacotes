@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html layout:decorate="~{layout}" xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset="UTF-8" />
+	</head>
+	<body>
+		<section class="layout-content" layout:fragment="corpo">
+			<nav class="navbar navbar-expand-md bg-light">
+				<div class="collapse navbar-collapse" id="navbarsExampleDefault">
+					<ul class="navbar-nav mr-auto">
+						<li class="nav-item active"><i class="oi oi-caret-right"></i>
+							<span th:text="#{action.register.customers}"></span></li>
+					</ul>
+					<a class="btn btn-primary btn-md" th:href="@{/clientes/listar}"
+						role="button"> <span class="oi oi-spreadsheet" title="Listar"
+						aria-hidden="true"></span> <span th:text="#{action.list.customers}"></span>
+					</a>
+				</div>
+			</nav>
+			<div class="container" id="cadastro">
+				<div th:replace="fragments/alert"></div>
+				<form
+					th:action="${client.id == null} ? @{/clientes/salvar} : @{/clientes/editar}"
+					th:object="${client}" method="POST">
+					
+					<div class="form-row">
+						<div class="form-group col-md-6">
+							<label for="email" th:text="#{info.mail}"></label> 
+							<input type="text" class="form-control" id="email" th:placeholder="#{info.mail}"
+								autofocus="autofocus" th:field="*{email}"
+								th:classappend="${#fields.hasErrors('email')} ? is-invalid" />
+	
+							<div class="invalid-feedback">
+								<span th:errors="*{email}"></span>
+							</div>
+						</div>
+	
+						<div class="form-group col-md-6">
+							<label for="senha" th:text="#{info.pass}"></label> 
+							<input type="text" class="form-control" id="senha" th:placeholder="#{info.pass}"
+								autofocus="autofocus" th:field="*{senha}"
+								th:classappend="${#fields.hasErrors('senha')} ? is-invalid" />
+	
+							<div class="invalid-feedback">
+								<span th:errors="*{senha}"></span>
+							</div>
+						</div>
+	
+						<div class="form-group col-md-6">
+							<label for="funcao" th:text="#{info.role}"></label> 
+							<select id="funcao" class="form-control" th:field="*{funcao}"
+								th:classappend="${#fields.hasErrors('funcao')} ? is-invalid">
+								<option value="ROLE_USER" th:text="#{select.customer}"></option>
+								<option value="ROLE_ADMIN" th:text="#{select.adm}"></option>
+							</select>
+						</div>
+	
+						<div class="form-group col-md-6">
+							<label for="ativo" th:text="#{info.enabled}"></label> 
+							<select id="ativo" class="form-control" th:field="*{ativo}"
+								th:classappend="${#fields.hasErrors('ativo')} ? is-invalid">
+								<option value="TRUE">Sim</option>
+								<option value="FALSE">Não</option>
+							</select>
+						</div>
+	
+						<div class="form-group col-md-6">
+							<label for="nome" th:text="#{info.name}"></label> 
+							<input type="text" class="form-control" id="nome" th:placeholder="#{info.name}"
+								autofocus="autofocus" th:field="*{nome}"
+								th:classappend="${#fields.hasErrors('nome')} ? is-invalid" />
+	
+							<div class="invalid-feedback">
+								<span th:errors="*{nome}"></span>
+							</div>
+						</div>
+	
+						<div class="form-group col-md-6">
+							<label for="cnpj" th:text="#{info.cpf}"></label> 
+							<input type="text" class="form-control" id="cpf" placeholder="___.___.___-__"
+								autofocus="autofocus" th:field="*{cpf}" th:readonly="${cliente.id != null}"
+								th:classappend="${#fields.hasErrors('cpf')} ? is-invalid" 
+								data-mask="000.000.000-00" data-mask-reverse="true" />
+							                               
+							<div class="invalid-feedback">
+								<span th:errors="*{cpf}"></span>
+							</div>
+						</div>
+	
+						<div class="form-group col-md-6">
+							<label for="telefone" th:text="#{info.tel}"></label> 
+							<input type="text" class="form-control" id="telefone" placeholder="____-____"
+								autofocus="autofocus" th:field="*{telefone}"
+								th:classappend="${#fields.hasErrors('telefone')} ? is-invalid"
+								data-mask="0000-0000" data-mask-reverse="true" />
+							                               
+							<div class="invalid-feedback">
+								<span th:errors="*{telefone}"></span>
+							</div>
+						</div>
+	
+						<div class="form-group col-md-6">
+							<label for="sexo" th:text="#{info.sex}"></label> 
+							<input type="text" class="form-control" id="sexo" th:placeholder="#{info.sex}"
+								autofocus="autofocus" th:field="*{sexo}"
+								th:classappend="${#fields.hasErrors('sexo')} ? is-invalid"/>
+							                               
+							<div class="invalid-feedback">
+								<span th:errors="*{sexo}"></span>
+							</div>
+						</div>
+	
+						<div class="form-group col-md-6">
+							<label for="dataNasc" th:text="#{info.birth}"></label> 
+							<input type="text" class="form-control" id="dataNasc" th:placeholder="#{info.birth}"
+								autofocus="autofocus" th:field="*{dataNasc}"
+								th:classappend="${#fields.hasErrors('dataNasc')} ? is-invalid"
+								data-mask="00/00/0000" data-mask-reverse="true" />
+							                               
+							<div class="invalid-feedback">
+								<span th:errors="*{dataNasc}"></span>
+							</div>
+						</div>
+					</div>
+					<input type="hidden" id="id" th:field="*{id}" />
+					<button type="submit" class="btn btn-primary btn-sm" th:text="#{action.save}"></button>
+				</form>
+			</div>
+		</section>
+	</body>
+</html>
+
+
+

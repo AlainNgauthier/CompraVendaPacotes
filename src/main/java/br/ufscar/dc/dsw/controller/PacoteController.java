@@ -3,10 +3,11 @@ package br.ufscar.dc.dsw.controller;
 import java.util.List;
 
 import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
+//import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,7 +17,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import br.ufscar.dc.dsw.domain.Agency;
+import br.ufscar.dc.dsw.domain.Agencia;
 import br.ufscar.dc.dsw.domain.Pacote;
 import br.ufscar.dc.dsw.security.UsuarioDetails;
 import br.ufscar.dc.dsw.service.spec.IAgencyService;
@@ -46,7 +47,6 @@ public class PacoteController {
 
 	@GetMapping("/filtrar")
 	public String filtrar(ModelMap model, Long id) {
-		System.out.println("\n\n\nOPAAAAAAAAA\n\n\n" + id);
 		model.addAttribute("pacotes", agenciaService.buscarPorId(id).getPacotes());
 		return "pacote/lista";
 	}
@@ -57,7 +57,7 @@ public class PacoteController {
 		
 	}
 
-	private Agency getAgencia() {
+	private Agencia getAgencia() {
 		UsuarioDetails UsuarioDetails = (UsuarioDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		return agenciaService.buscarPorId(UsuarioDetails.getUsuario().getId());
 		
@@ -116,7 +116,7 @@ public class PacoteController {
 	}
 
 	@ModelAttribute("agencias")
-	public List<Agency> listaAgencia() {
+	public List<Agencia> listaAgencia() {
 		return agenciaService.buscarTodos();
 	}
 }

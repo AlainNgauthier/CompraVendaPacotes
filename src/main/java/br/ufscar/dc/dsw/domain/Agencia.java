@@ -13,8 +13,8 @@ import br.ufscar.dc.dsw.validation.UniqueCNPJ;
 
 @SuppressWarnings("serial")
 @Entity
-@Table(name = "Agency")
-public class Agency extends User{
+@Table(name = "Agencia")
+public class Agencia extends User{
 
     @UniqueCNPJ(message = "{Unique.agencia.cnpj}")
     @NotBlank

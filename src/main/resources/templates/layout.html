@@ -1,51 +1,41 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 	<head>
-		<title>AGENCY</title>
+		<title th:text="#{object.title}"></title>
 		<meta charset="UTF-8" />
 		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+		<meta name="viewport"
+			content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 		<meta name="description" content="" />
 		<meta name="author" content="" />
 		
 		<!-- Bootstrap core CSS -->
 		<link th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" rel="stylesheet" />
 		<link th:href="@{/webjars/open-iconic/font/css/open-iconic-bootstrap.min.css}" rel="stylesheet" />
+		
 		<!-- Custom styles for this template -->
 		<link th:href="@{/css/style.css}" rel="stylesheet" />
 	</head>
 	<body>
-	
-		<!-- <header th:replace="fragments/header :: cabecalho">
+		<header th:replace="fragments/header :: cabecalho">
 			<div>header</div>
-		</header> -->
-		<header>
-			<div>HEADER</div>
 		</header>
+	
 		<div class="layout-main">
-			<!-- <aside>
+			<aside>
 				<nav th:replace="fragments/sidebar :: nav-sidebar">
-					<span>menu</span>
 				</nav>
-			</aside> -->
-	
-			<section layout:fragment="corpo"></section>
+			</aside>
+			<section layout:fragment="corpo">
+				
+			</section>
 		</div>
-	
-		<!-- <footer th:replace="fragments/footer :: rodape">
-			<div>footer</div>
-		</footer> -->
-		<footer>
-			<div>FOOTER</div>
-		</footer>
-	
 		<!-- Bootstrap core JavaScript
 	    ================================================== -->
 		<!-- Placed at the end of the document so the pages load faster -->
-		<!-- <script th:src="@{/webjars/jquery/jquery.min.js}"></script>
+		<script th:src="@{/webjars/jquery/jquery.min.js}"></script>
 		<script th:src="@{/webjars/jquery-mask-plugin/dist/jquery.mask.min.js}"></script>
-		<script
-			src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
 		<script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
 		<script type="text/javascript">
 			var url = '';
@@ -67,6 +57,6 @@
 					$(".sidebar").toggleClass("sidebar-open");
 				})
 			});
-		</script> -->
+		</script>
 	</body>
 </html>

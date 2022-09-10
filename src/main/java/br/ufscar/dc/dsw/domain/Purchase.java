@@ -14,16 +14,16 @@ import javax.validation.constraints.NotNull;
 @Table(name = "Purchase")
 public class Purchase extends AbstractEntity<Long>{
 
-    @NotNull(message = "{NotNull.compra.preco}")
+    @NotNull(message = "{NotNull.purchase.preco}")
     @Column(nullable = false, columnDefinition = "DECIMAL(8,2) DEFAULT 0.0")
     private BigDecimal preco;
     
-    @NotNull(message = "{NotNull.compra.cliente}")
+    @NotNull(message = "{NotNull.purchase.cliente}")
     @ManyToOne
-    @JoinColumn(name = "cliente_id")
+    @JoinColumn(name = "client_id")
     private Client cliente;
 
-    @NotNull(message = "{NotNull.compra.pacote}")
+    @NotNull(message = "{NotNull.purchase.pacote}")
     @ManyToOne
     @JoinColumn(name = "pacote_id")
     private Pacote pacote;

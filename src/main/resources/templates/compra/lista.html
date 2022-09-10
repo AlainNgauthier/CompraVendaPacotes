@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html layout:decorate="~{layout}">
+<head>
+<meta charset="UTF-8" />
+</head>
+<body>
+	<section class="layout-content" layout:fragment="corpo">
+		<div class="container" id="listagem">
+			<div th:replace="fragments/alert"></div>
+			<div class="table-responsive">
+				<table class="table table-striped table-hover table-sm">
+					<thead>
+						<tr>
+							<th>CPF</th>
+							<th>Email</th>
+							<th>Nome Pacote</th>
+							<th>Agencia</th>
+							<th>Destino</th>							
+							<th>Tempo de Viagem</th>
+							<th>Data</th>
+							<th>Preco</th>
+							<th>Description</th>							
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="compra : ${compras}">
+							<td th:text="${compra.cliente.cpf}"></td>
+							<td th:text="${compra.cliente.email}"></td>
+							<td th:text="${compra.pacote.nome}"></td>
+							<td th:text="${compra.pacote.agencia.nome}"></td>
+							<td th:text="${compra.pacote.destinos}"></td>
+							<td th:text="${compra.pacote.duracao}"></td>
+							<td th:text="${compra.pacote.data}"></td>
+							<td th:text="|R$ ${#numbers.formatDecimal(compra.pacote.preco,2,2,'COMMA')}|"></td>
+							<td th:text="${compra.pacote.descricao}"></td>							
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+		<div th:replace="fragments/modal :: modal"></div>
+	</section>
+</body>
+</html>

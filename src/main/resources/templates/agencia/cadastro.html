@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html layout:decorate="~{layout}" xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset="UTF-8" />
+	</head>
+	<body>
+		<section class="layout-content" layout:fragment="corpo">
+			<nav class="navbar navbar-expand-md bg-light">
+				<div class="collapse navbar-collapse" id="navbarsExampleDefault">
+					<ul class="navbar-nav mr-auto">
+						<li class="nav-item active">
+							<span th:text="#{action.register.agencies}"></span>
+						</li>
+					</ul>
+					<a class="btn btn-primary btn-md" th:href="@{/agencias/listar}" role="button">
+						<span th:text="#{action.list.agencies}"></span>
+					</a>
+				</div>
+			</nav>
+			<div class="container" id="cadastro">
+				<div th:replace="fragments/alert"></div>
+				<form th:action="${agencia.id == null} ? @{/agencias/salvar} : @{/agencias/editar}" th:object="${agencia}" method="POST">
+					<div class="form-row">
+						<div class="form-group">
+							<label for="email" th:text="#{info.mail}"></label>
+							<input type="text" class="form-control" id="email" th:placeholder="#{info.mail}"
+								autofocus="autofocus" th:field="*{email}"
+								th:classappend="${#fields.hasErrors('email')} ? is-invalid" />
+							<div class="invalid-feedback">
+								<span th:errors="*{email}"></span>
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="senha" th:text="#{info.pass}"></label>
+							<input type="text" class="form-control" id="senha" th:placeholder="#{info.pass}"
+								autofocus="autofocus" th:field="*{senha}"
+								th:classappend="${#fields.hasErrors('senha')} ? is-invalid" />
+							<div class="invalid-feedback">
+								<span th:errors="*{senha}"></span>
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="funcao" th:text="#{info.role}"></label>
+							<select id="funcao" class="form-control" th:field="*{funcao}"
+								th:classappend="${#fields.hasErrors('funcao')} ? is-invalid">
+								<option value="ROLE_AGENCIA">Agency</option>
+								<option value="ROLE_ADMIN">Administrador</option>
+							</select>
+						</div>
+						<div class="form-group">
+							<label for="ativo" th:text="#{info.enabled}"></label>
+							<select id="ativo" class="form-control" th:field="*{ativo}"
+								th:classappend="${#fields.hasErrors('ativo')} ? is-invalid">
+								<option value="TRUE">Sim</option>
+								<option value="FALSE">Nao</option>
+							</select>
+						</div>
+						<div class="form-group">
+							<label for="nome" th:text="#{info.name}"></label>
+							<input type="text" class="form-control" id="nome" th:placeholder="#{info.name}"
+								autofocus="autofocus" th:field="*{nome}"
+								th:classappend="${#fields.hasErrors('nome')} ? is-invalid" />
+	
+							<div class="invalid-feedback">
+								<span th:errors="*{nome}"></span>
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="cnpj" th:text="#{info.cnpj}"></label>
+							<input type="text" class="form-control" id="cnpj" placeholder="__.___.___/____-__"
+								autofocus="autofocus" th:field="*{cnpj}"
+								th:classappend="${#fields.hasErrors('cnpj')} ? is-invalid"
+								th:readonly="${agencia.id != null}" data-mask="00.000.000/0000-00"
+								data-mask-reverse="true" />
+							<div class="invalid-feedback">
+								<span th:errors="*{cnpj}"></span>
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="descricao" th:text="#{info.description}"></label>
+							<input type="text" class="form-control" id="descricao" th:placeholder="#{info.description}"
+								autofocus="autofocus" th:field="*{descricao}"
+								th:classappend="${#fields.hasErrors('descricao')} ? is-invalid" />
+	
+							<div class="invalid-feedback">
+								<span th:errors="*{descricao}"></span>
+							</div>
+						</div>
+					</div>
+					<input type="hidden" id="id" th:field="*{id}" />
+					<button type="submit" class="btn btn-primary" th:text="#{action.save}"></button>
+				</form>
+			</div>
+		</section>
+	</body>
+</html>

@@ -22,7 +22,7 @@ public class Pacote  extends AbstractEntity<Long> {
     @NotNull(message = "{NotNull.pacote.agencia}")
     @ManyToOne
     @JoinColumn(name = "agencia_id")
-	private Agency agencia;
+	private Agencia agencia;
 
     @NotBlank(message = "{NotBlank.pacote.data}")
     @Column(nullable = false, length = 12)
@@ -42,9 +42,6 @@ public class Pacote  extends AbstractEntity<Long> {
     @Column(nullable = false, length = 255)
     private String destinos;
 
-//    @Column(nullable = false, length = 255)
-//    private String fotos;
-
     public String getNome() {
         return this.nome;
     }
@@ -53,11 +50,11 @@ public class Pacote  extends AbstractEntity<Long> {
         this.nome = nome;
     }
 
-    public Agency getAgencia() {
+    public Agencia getAgencia() {
         return this.agencia;
     }
 
-    public void setAgencia(Agency agencia) {
+    public void setAgencia(Agencia agencia) {
         this.agencia = agencia;
     }
 
@@ -100,13 +97,4 @@ public class Pacote  extends AbstractEntity<Long> {
     public void setDestinos(String destinos) {
         this.destinos = destinos;
     }
-
-//    public String getFotos() {
-//        return this.fotos;
-//    }
-
-//    public void setFotos(String fotos) {
-//        this.fotos = fotos;
-//    }
-
 }

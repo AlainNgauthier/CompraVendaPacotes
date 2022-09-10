@@ -13,17 +13,15 @@
 	<link th:href="@{/css/style.css}" rel="stylesheet" />
 </head>		
 <body class="text-center">
-	<div>
-		<h1 class="h3 mb-3 font-weight-normal">
-			<i class="oi oi-warning"></i> 
+	<div style="text-align: center;">
+	<br/><br/><br/><br/>
+		<!-- <h1 class="h3 mb-3 font-weight-normal">
 			<span th:text="${status}"></span>
-		</h1>
-		
+		</h1> -->
 		<h2 th:text="${error}"></h2>
-		
 		<div>
 			<span th:text="${message}"></span><br/><br/>
-			<a class="btn btn-primary" type="button" href="javascript:history.back()">Voltar a página anterior</a>
+			<a class="btn" type="button" href="javascript:history.back()">Voltar</a>
 		</div>
 	</div>
 </body>

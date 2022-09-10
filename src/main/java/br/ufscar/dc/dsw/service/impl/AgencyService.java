@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import br.ufscar.dc.dsw.dao.IAgencyDAO;
-import br.ufscar.dc.dsw.domain.Agency;
+import br.ufscar.dc.dsw.domain.Agencia;
 import br.ufscar.dc.dsw.service.spec.IAgencyService;
 
 @Service
@@ -17,7 +17,7 @@ public class AgencyService implements IAgencyService {
 	@Autowired
 	IAgencyDAO dao;
 	
-	public void salvar(Agency agencia) {
+	public void salvar(Agencia agencia) {
 		dao.save(agencia);
 	}
 	
@@ -26,12 +26,12 @@ public class AgencyService implements IAgencyService {
 	}
 	
 	@Transactional(readOnly = true)
-	public Agency buscarPorId(Long id) {
+	public Agencia buscarPorId(Long id) {
 		return dao.findById(id.longValue());
 	}
 	
 	@Transactional(readOnly = true)
-	public List<Agency> buscarTodos() {
+	public List<Agencia> buscarTodos() {
 		return dao.findAll();
 	}
 	

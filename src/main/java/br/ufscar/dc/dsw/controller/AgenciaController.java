@@ -1,6 +1,7 @@
 package br.ufscar.dc.dsw.controller;
 
 import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -11,13 +12,12 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-
-import br.ufscar.dc.dsw.domain.Agency;
+import br.ufscar.dc.dsw.domain.Agencia;
 import br.ufscar.dc.dsw.service.spec.IAgencyService;
 
 @Controller
 @RequestMapping("/agencias")
-public class AgencyController {
+public class AgenciaController {
     
 	@Autowired
 	private IAgencyService service;
@@ -26,7 +26,7 @@ public class AgencyController {
 	BCryptPasswordEncoder encoder;
 
 	@GetMapping("/cadastrar")
-	public String cadastrar(Agency agencia) {
+	public String cadastrar(Agencia agencia) {
 		return "agencia/cadastro";
 	}
 	
@@ -37,17 +37,17 @@ public class AgencyController {
 	}
 	
 	@PostMapping("/salvar")
-	public String salvar(@Valid Agency agencia, BindingResult result, RedirectAttributes attr) {
+	public String salvar(@Valid Agencia agencia, BindingResult result, RedirectAttributes attr) {
 		
 		if (result.hasErrors()) {
 			return "agencia/cadastro";
 		}
 		
-		Agency agencia2 = agencia;
+		Agencia agencia2 = agencia;
 		agencia2.setSenha(encoder.encode(agencia.getSenha()));
 		
         service.salvar(agencia2);
-		attr.addFlashAttribute("sucess", "Agencia criada com sucesso.");
+		attr.addFlashAttribute("sucess", "Agencia inserida com sucesso.");
 		return "redirect:/agencias/listar";
 	}
 	
@@ -58,27 +58,27 @@ public class AgencyController {
 	}
 	
 	@PostMapping("/editar")
-	public String editar(@Valid Agency agencia, BindingResult result, RedirectAttributes attr) {
+	public String editar(@Valid Agencia agencia, BindingResult result, RedirectAttributes attr) {
 		
 		if (result.getFieldErrorCount() > 1 || result.getFieldError("cnpj") == null) {
 			return "agencia/cadastro";
 		}
 
-		Agency agencia2 = agencia;
+		Agencia agencia2 = agencia;
 		agencia2.setSenha(encoder.encode(agencia.getSenha()));
 		
         service.salvar(agencia2);
-		attr.addFlashAttribute("sucess", "Agencia atualizada com sucesso.");
+		attr.addFlashAttribute("sucess", "Agencia editada com sucesso.");
 		return "redirect:/agencias/listar";
 	}
 	
 	@GetMapping("/excluir/{id}")
 	public String excluir(@PathVariable("id") Long id, ModelMap model) {
 		if (service.temPacotes(id)) {
-			model.addAttribute("fail", "Agencia não removida. Possui pacote(s) vinculado(s).");
+			model.addAttribute("fail", "Agencia não excluída. Possui pacote(s) vinculado(s).");
 		} else {
 			service.excluir(id);
-			model.addAttribute("sucess", "Agencia removida com sucesso.");
+			model.addAttribute("sucess", "Agencia excluída com sucesso.");
 		}
 		return listar(model);
 	}
