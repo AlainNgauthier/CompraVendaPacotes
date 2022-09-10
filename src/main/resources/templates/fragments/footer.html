@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity">
+<head><meta charset="UTF-8"></head>
+<body>
+	<footer class="layout-footer" th:fragment="rodape">
+		<div class="container">
+			<div class="footer-copy">
+				<span>&copy; Departamento de Computação &copy;</span>
+				<!-- <div sec:authorize="isAuthenticated()">
+					<form th:action="@{/logout}" method="post">
+						<div class="form-group">
+								<div class="d-flex justify-content-center">
+									<input type="submit" name="login-submit" id="login-submit"
+										class="form-control btn btn-info" value="Logout">
+								</div>
+						</div>
+					</form>
+				</div> -->
+			</div>
+		</div>
+		
+	</footer>
+</body>
+</html>
