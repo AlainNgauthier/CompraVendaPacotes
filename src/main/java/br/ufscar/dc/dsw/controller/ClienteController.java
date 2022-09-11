@@ -1,5 +1,4 @@
 package br.ufscar.dc.dsw.controller;
-
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -11,21 +10,20 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-
-import br.ufscar.dc.dsw.domain.Client;
-import br.ufscar.dc.dsw.service.spec.IClientService;
+import br.ufscar.dc.dsw.domain.Cliente;
+import br.ufscar.dc.dsw.service.spec.IClienteService;
 
 @Controller
 @RequestMapping("/clientes")
-public class ClientController {
+public class ClienteController {
     @Autowired
-	private IClientService service;
+	private IClienteService service;
 
 	@Autowired
 	BCryptPasswordEncoder encoder;
 
     @GetMapping("/cadastrar")
-    public String cadastrar(Client cliente){
+    public String cadastrar(Cliente cliente){
         return "cliente/cadastro";
     }
 
@@ -36,16 +34,16 @@ public class ClientController {
     }
 
     @PostMapping("/salvar")
-    public String salvar(@Valid Client cliente, BindingResult result, RedirectAttributes attr) {
+    public String salvar(@Valid Cliente cliente, BindingResult result, RedirectAttributes attr) {
         if (result.hasErrors()) {
 			return "cliente/cadastro";
 		}
 
-		Client cliente2 = cliente;
+        Cliente cliente2 = cliente;
 		cliente2.setSenha(encoder.encode(cliente.getSenha()));
 
         service.salvar(cliente2);
-		attr.addFlashAttribute("sucess", "Cliente inserido com sucesso.");
+		attr.addFlashAttribute("sucess", "Cliente inserido");
 		
         return "redirect:/clientes/listar";
     }
@@ -57,24 +55,24 @@ public class ClientController {
 	}
 
     @PostMapping("/editar")
-	public String editar(@Valid Client cliente, BindingResult result, RedirectAttributes attr) {
+	public String editar(@Valid Cliente cliente, BindingResult result, RedirectAttributes attr) {
 
 		if (result.getFieldErrorCount() > 1 || result.getFieldError("cpf") == null) {
 			return "cliente/cadastro";
 		}
 
-		Client cliente2 = cliente;
+		Cliente cliente2 = cliente;
 		cliente2.setSenha(encoder.encode(cliente.getSenha()));
 		
         service.salvar(cliente2);
-		attr.addFlashAttribute("sucess", "Cliente editado com sucesso.");
+		attr.addFlashAttribute("sucess", "Cliente removido");
 		return "redirect:/clientes/listar";
 	}
 
     @GetMapping("/excluir/{id}")
 	public String excluir(@PathVariable("id") Long id, ModelMap model) {
 		service.excluir(id);
-		model.addAttribute("sucess", "Cliente excluído com sucesso.");
+		model.addAttribute("sucess", "Cliente removido");
 		
 		return listar(model);
 	}

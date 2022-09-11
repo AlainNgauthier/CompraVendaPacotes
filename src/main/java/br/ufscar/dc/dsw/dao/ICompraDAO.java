@@ -5,14 +5,14 @@ import java.util.List;
 import org.springframework.data.repository.CrudRepository;
 
 import br.ufscar.dc.dsw.domain.Compra;
-import br.ufscar.dc.dsw.domain.Client;
+import br.ufscar.dc.dsw.domain.Cliente;
 
 @SuppressWarnings("unchecked")
 public interface ICompraDAO extends CrudRepository<Compra, Long>{
 
 	Compra findById(long id);
 
-	List<Compra> findAllByCliente(Client c);
+	List<Compra> findAllByCliente(Cliente c);
 	
 	Compra save(Compra compra);
 }

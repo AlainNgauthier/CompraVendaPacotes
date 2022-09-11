@@ -15,11 +15,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import br.ufscar.dc.dsw.domain.Client;
+import br.ufscar.dc.dsw.domain.Cliente;
 import br.ufscar.dc.dsw.domain.Compra;
 import br.ufscar.dc.dsw.domain.Pacote;
 import br.ufscar.dc.dsw.security.UsuarioDetails;
-import br.ufscar.dc.dsw.service.spec.IClientService;
+import br.ufscar.dc.dsw.service.spec.IClienteService;
 import br.ufscar.dc.dsw.service.spec.ICompraService;
 import br.ufscar.dc.dsw.service.spec.IPacoteService;
 
@@ -34,7 +34,7 @@ public class CompraController {
 	private IPacoteService PacoteService;
 
 	@Autowired
-	private IClientService ClienteService;
+	private IClienteService ClienteService;
 	
 	@GetMapping("/cadastrar")
 	public String cadastrar(Compra compra) {
@@ -42,7 +42,7 @@ public class CompraController {
 		return "compra/cadastro";
 	}
 	
-	private Client getCliente() {
+	private Cliente getCliente() {
 		UsuarioDetails UsuarioDetails = (UsuarioDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		return ClienteService.buscarPorId(UsuarioDetails.getUsuario().getId());
 		

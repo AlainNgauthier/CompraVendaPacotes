@@ -11,19 +11,18 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 //import org.yaml.snakeyaml.composer.Composer;
 
 import br.ufscar.dc.dsw.dao.IAgencyDAO;
-import br.ufscar.dc.dsw.dao.IClientDAO;
+import br.ufscar.dc.dsw.dao.IClienteDAO;
 import br.ufscar.dc.dsw.dao.ICompraDAO;
 import br.ufscar.dc.dsw.dao.IPacoteDAO;
 import br.ufscar.dc.dsw.dao.IUserDAO;
 import br.ufscar.dc.dsw.domain.Agencia;
-import br.ufscar.dc.dsw.domain.Client;
+import br.ufscar.dc.dsw.domain.Cliente;
 import br.ufscar.dc.dsw.domain.Compra;
 import br.ufscar.dc.dsw.domain.Pacote;
 
 @SpringBootApplication
 public class CompraVendaPacotesTuristicosApplication {
 	
-	//remover o log
 	private static final Logger log = LoggerFactory.getLogger(CompraVendaPacotesTuristicosApplication.class);
 
 	public static void main(String[] args) {
@@ -31,12 +30,12 @@ public class CompraVendaPacotesTuristicosApplication {
 	}
 	
 	@Bean
-	public CommandLineRunner demo(IUserDAO userDAO, IClientDAO clienteDAO, BCryptPasswordEncoder encoder, IPacoteDAO pacoteDAO, IAgencyDAO agencyDAO, ICompraDAO purchaseDAO) {
+	public CommandLineRunner demo(IUserDAO userDAO, IClienteDAO clienteDAO, BCryptPasswordEncoder encoder, IPacoteDAO pacoteDAO, IAgencyDAO agencyDAO, ICompraDAO purchaseDAO) {
 		return (args) -> {
 
 			// Registering Client
 			try {
-				Client cliente1 = new Client();
+				Cliente cliente1 = new Cliente();
 				cliente1.setEmail("alain@gmail.com");
 				cliente1.setSenha(encoder.encode("alain"));
 				cliente1.setFuncao("ROLE_ADMIN");
@@ -53,7 +52,7 @@ public class CompraVendaPacotesTuristicosApplication {
 			}
 
 			try {
-				Client a1 = new Client();
+				Cliente a1 = new Cliente();
 				a1.setEmail("patricia@gmail.com");
 				a1.setSenha(encoder.encode("patricia"));
 				a1.setFuncao("ROLE_USER");

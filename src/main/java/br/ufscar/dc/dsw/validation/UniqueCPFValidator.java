@@ -4,24 +4,22 @@ import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import br.ufscar.dc.dsw.dao.IClientDAO;
-import br.ufscar.dc.dsw.domain.Client;
+import br.ufscar.dc.dsw.dao.IClienteDAO;
+import br.ufscar.dc.dsw.domain.Cliente;
 
 @Component
 public class UniqueCPFValidator implements ConstraintValidator<UniqueCPF, String> {
 
 	@Autowired
-	private IClientDAO clienteDAO;
+	private IClienteDAO clienteDAO;
 
 	@Override
 	public boolean isValid(String cpf, ConstraintValidatorContext context) {
 		if (clienteDAO != null) {
-			Client cliente = clienteDAO.findByCpf(cpf);
-
+			Cliente cliente = clienteDAO.findByCpf(cpf);
 			return cliente == null;
 		} else {
 			return true;
 		}
-
 	}
 }

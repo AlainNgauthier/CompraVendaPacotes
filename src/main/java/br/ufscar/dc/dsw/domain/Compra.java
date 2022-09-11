@@ -21,7 +21,7 @@ public class Compra extends AbstractEntity<Long>{
     @NotNull(message = "{NotNull.compra.cliente}")
     @ManyToOne
     @JoinColumn(name = "cliente_id")
-    private Client cliente;
+    private Cliente cliente;
 
     @NotNull(message = "{NotNull.compra.pacote}")
     @ManyToOne
@@ -36,11 +36,11 @@ public class Compra extends AbstractEntity<Long>{
         this.preco = preco;
     }
 
-    public Client getCliente() {
+    public Cliente getCliente() {
         return this.cliente;
     }
 
-    public void setCliente(Client cliente) {
+    public void setCliente(Cliente cliente) {
         this.cliente = cliente;
     }
 

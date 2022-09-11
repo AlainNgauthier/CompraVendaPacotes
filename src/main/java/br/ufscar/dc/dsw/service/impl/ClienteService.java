@@ -5,18 +5,18 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import br.ufscar.dc.dsw.dao.IClientDAO;
-import br.ufscar.dc.dsw.domain.Client;
-import br.ufscar.dc.dsw.service.spec.IClientService;
+import br.ufscar.dc.dsw.dao.IClienteDAO;
+import br.ufscar.dc.dsw.domain.Cliente;
+import br.ufscar.dc.dsw.service.spec.IClienteService;
 
 @Service
 @Transactional(readOnly = false)
-public class ClientService implements IClientService {
+public class ClienteService implements IClienteService {
     
 	@Autowired
-	IClientDAO dao;
+	IClienteDAO dao;
 	
-	public void salvar(Client cliente) {
+	public void salvar(Cliente cliente) {
 		dao.save(cliente);
 	}
 	
@@ -25,12 +25,12 @@ public class ClientService implements IClientService {
 	}
 	
 	@Transactional(readOnly = true)
-	public Client buscarPorId(Long id) {
+	public Cliente buscarPorId(Long id) {
 		return dao.findById(id.longValue());
 	}
 	
 	@Transactional(readOnly = true)
-	public List<Client> buscarTodos() {
+	public List<Cliente> buscarTodos() {
 		return dao.findAll();
 	}
 }

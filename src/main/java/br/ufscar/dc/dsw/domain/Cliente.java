@@ -13,12 +13,12 @@ import br.ufscar.dc.dsw.validation.UniqueCPF;
 
 @SuppressWarnings("serial")
 @Entity
-@Table(name = "Client")
-public class Client extends User{
+@Table(name = "Cliente")
+public class Cliente extends User{
 
-    @UniqueCPF(message = "{Unique.client.cpf}")
+    @UniqueCPF(message = "{Unique.cliente.cpf}")
     @NotBlank
-    @Size(min = 14, max = 14, message = "{Size.client.cpf}")
+    @Size(min = 14, max = 14, message = "{Size.cliente.cpf}")
     @Column(nullable = false, length = 50)
     private String cpf;
     

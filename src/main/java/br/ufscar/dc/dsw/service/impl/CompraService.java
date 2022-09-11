@@ -8,7 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import br.ufscar.dc.dsw.dao.ICompraDAO;
 import br.ufscar.dc.dsw.domain.Compra;
-import br.ufscar.dc.dsw.domain.Client;
+import br.ufscar.dc.dsw.domain.Cliente;
 import br.ufscar.dc.dsw.service.spec.ICompraService;
 
 @Service
@@ -28,7 +28,7 @@ public class CompraService implements ICompraService {
 	}
 
 	@Transactional(readOnly = true)
-	public List<Compra> buscarTodosPorCliente(Client c) {
+	public List<Compra> buscarTodosPorCliente(Cliente c) {
 		return dao.findAllByCliente(c);
 	}
 }
