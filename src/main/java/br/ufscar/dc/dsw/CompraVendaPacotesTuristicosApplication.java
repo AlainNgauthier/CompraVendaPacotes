@@ -5,21 +5,19 @@ import java.math.BigDecimal;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.CommandLineRunner;
-import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.yaml.snakeyaml.composer.Composer;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
+//import org.yaml.snakeyaml.composer.Composer;
 
 import br.ufscar.dc.dsw.dao.IAgencyDAO;
 import br.ufscar.dc.dsw.dao.IClientDAO;
-import br.ufscar.dc.dsw.dao.IPurchaseDAO;
+import br.ufscar.dc.dsw.dao.ICompraDAO;
 import br.ufscar.dc.dsw.dao.IPacoteDAO;
 import br.ufscar.dc.dsw.dao.IUserDAO;
 import br.ufscar.dc.dsw.domain.Agencia;
 import br.ufscar.dc.dsw.domain.Client;
-import br.ufscar.dc.dsw.domain.Purchase;
+import br.ufscar.dc.dsw.domain.Compra;
 import br.ufscar.dc.dsw.domain.Pacote;
 
 @SpringBootApplication
@@ -33,7 +31,7 @@ public class CompraVendaPacotesTuristicosApplication {
 	}
 	
 	@Bean
-	public CommandLineRunner demo(IUserDAO userDAO, IClientDAO clienteDAO, BCryptPasswordEncoder encoder, IPacoteDAO pacoteDAO, IAgencyDAO agencyDAO, IPurchaseDAO purchaseDAO) {
+	public CommandLineRunner demo(IUserDAO userDAO, IClientDAO clienteDAO, BCryptPasswordEncoder encoder, IPacoteDAO pacoteDAO, IAgencyDAO agencyDAO, ICompraDAO purchaseDAO) {
 		return (args) -> {
 
 			// Registering Client
@@ -87,28 +85,12 @@ public class CompraVendaPacotesTuristicosApplication {
 				log.info("error on registering DreamAgency: " + e.getLocalizedMessage());
 			}
 
-//			try {
-//				log.info("Salvando Agencia 2");
-//				Agencia a2 = new Agencia();
-//				a2.setEmail("Maritima@gmail.com");
-//				a2.setSenha(encoder.encode("Maritima"));
-//				a2.setFuncao("ROLE_AGENCIA");
-//				a2.setAtivo(true);
-//				a2.setCnpj("56.534.546/0003-45");
-//				a2.setNome("Marítima");
-//				a2.setDescricao("Melhor Agência de Turismo com ênfase em Pacotes Marítmos.");
-//				usuarioDAO.save(a2);
-//				log.info("Agencia 2 salva");
-//			} catch (Exception e) {
-//				log.info("Falha ao salvar Agencia 2: " + e.getLocalizedMessage());
-//			}
-
 			// Registering Pacotes
 			try {
 				Pacote pacote1 = new Pacote();
 				pacote1.setNome("Travel: XX City");
 				pacote1.setAgencia(agencyDAO.findByNome("DreamAgency"));
-				pacote1.setData("2022/09/05");
+				pacote1.setData("2022/09/12");
 				pacote1.setDuracao(10);
 				pacote1.setPreco(BigDecimal.valueOf(1000.00));
 				pacote1.setDescricao("Have your dream travel");
@@ -123,7 +105,7 @@ public class CompraVendaPacotesTuristicosApplication {
 				Pacote pacote2 = new Pacote();
 				pacote2.setNome("Travel: XY City");
 				pacote2.setAgencia(agencyDAO.findByNome("DreamAgency"));
-				pacote2.setData("2022/09/09");
+				pacote2.setData("2022/10/10");
 				pacote2.setDuracao(15);
 				pacote2.setPreco(BigDecimal.valueOf(1000.00));
 				pacote2.setDescricao("Have your dream travel");
@@ -136,7 +118,7 @@ public class CompraVendaPacotesTuristicosApplication {
 
 			// Registering Purchase
 			try {
-				Purchase purchase1 = new Purchase();
+				Compra purchase1 = new Compra();
 				purchase1.setCliente(clienteDAO.getUserByEmail("patricia@gmail.com"));
 				purchase1.setPacote(pacoteDAO.getPacoteByName("Travel: XX City"));
 				purchase1.setPreco(BigDecimal.valueOf(1000.00));

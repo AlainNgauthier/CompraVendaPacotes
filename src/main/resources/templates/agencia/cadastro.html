@@ -21,7 +21,7 @@
 				<div th:replace="fragments/alert"></div>
 				<form th:action="${agencia.id == null} ? @{/agencias/salvar} : @{/agencias/editar}" th:object="${agencia}" method="POST">
 					<div class="form-row">
-						<div class="form-group">
+						<div class="form-group col-md-12">
 							<label for="email" th:text="#{info.mail}"></label>
 							<input type="text" class="form-control" id="email" th:placeholder="#{info.mail}"
 								autofocus="autofocus" th:field="*{email}"
@@ -30,7 +30,7 @@
 								<span th:errors="*{email}"></span>
 							</div>
 						</div>
-						<div class="form-group">
+						<div class="form-group col-md-12">
 							<label for="senha" th:text="#{info.pass}"></label>
 							<input type="text" class="form-control" id="senha" th:placeholder="#{info.pass}"
 								autofocus="autofocus" th:field="*{senha}"
@@ -39,7 +39,7 @@
 								<span th:errors="*{senha}"></span>
 							</div>
 						</div>
-						<div class="form-group">
+						<div class="form-group col-md-12">
 							<label for="funcao" th:text="#{info.role}"></label>
 							<select id="funcao" class="form-control" th:field="*{funcao}"
 								th:classappend="${#fields.hasErrors('funcao')} ? is-invalid">
@@ -47,7 +47,7 @@
 								<option value="ROLE_ADMIN">Administrador</option>
 							</select>
 						</div>
-						<div class="form-group">
+						<div class="form-group col-md-12">
 							<label for="ativo" th:text="#{info.enabled}"></label>
 							<select id="ativo" class="form-control" th:field="*{ativo}"
 								th:classappend="${#fields.hasErrors('ativo')} ? is-invalid">
@@ -55,7 +55,7 @@
 								<option value="FALSE">Nao</option>
 							</select>
 						</div>
-						<div class="form-group">
+						<div class="form-group col-md-12">
 							<label for="nome" th:text="#{info.name}"></label>
 							<input type="text" class="form-control" id="nome" th:placeholder="#{info.name}"
 								autofocus="autofocus" th:field="*{nome}"
@@ -65,9 +65,9 @@
 								<span th:errors="*{nome}"></span>
 							</div>
 						</div>
-						<div class="form-group">
+						<div class="form-group col-md-12">
 							<label for="cnpj" th:text="#{info.cnpj}"></label>
-							<input type="text" class="form-control" id="cnpj" placeholder="__.___.___/____-__"
+							<input type="text" class="form-control" id="cnpj"
 								autofocus="autofocus" th:field="*{cnpj}"
 								th:classappend="${#fields.hasErrors('cnpj')} ? is-invalid"
 								th:readonly="${agencia.id != null}" data-mask="00.000.000/0000-00"
@@ -76,7 +76,7 @@
 								<span th:errors="*{cnpj}"></span>
 							</div>
 						</div>
-						<div class="form-group">
+						<div class="form-group col-md-12">
 							<label for="descricao" th:text="#{info.description}"></label>
 							<input type="text" class="form-control" id="descricao" th:placeholder="#{info.description}"
 								autofocus="autofocus" th:field="*{descricao}"

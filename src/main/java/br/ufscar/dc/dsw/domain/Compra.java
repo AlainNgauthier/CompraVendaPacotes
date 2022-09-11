@@ -11,19 +11,19 @@ import javax.validation.constraints.NotNull;
 
 @SuppressWarnings("serial")
 @Entity
-@Table(name = "Purchase")
-public class Purchase extends AbstractEntity<Long>{
+@Table(name = "Compra")
+public class Compra extends AbstractEntity<Long>{
 
-    @NotNull(message = "{NotNull.purchase.preco}")
+    @NotNull(message = "{NotNull.compra.preco}")
     @Column(nullable = false, columnDefinition = "DECIMAL(8,2) DEFAULT 0.0")
     private BigDecimal preco;
     
-    @NotNull(message = "{NotNull.purchase.cliente}")
+    @NotNull(message = "{NotNull.compra.cliente}")
     @ManyToOne
-    @JoinColumn(name = "client_id")
+    @JoinColumn(name = "cliente_id")
     private Client cliente;
 
-    @NotNull(message = "{NotNull.purchase.pacote}")
+    @NotNull(message = "{NotNull.compra.pacote}")
     @ManyToOne
     @JoinColumn(name = "pacote_id")
     private Pacote pacote;

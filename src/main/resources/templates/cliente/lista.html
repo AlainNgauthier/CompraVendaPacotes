@@ -7,6 +7,7 @@ xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
 </head>
 <body>
 	<section class="layout-content" layout:fragment="corpo">
+	<br/><br/><br/>
 		<nav class="navbar navbar-expand-md bg-light">
 			<div class="collapse navbar-collapse" id="navbarsExampleDefault">
 				<ul class="navbar-nav mr-auto">
@@ -25,11 +26,8 @@ xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
 				<table class="table table-striped table-hover table-sm">
 					<thead>
 						<tr>
-							<th>#</th>
 							<th th:text="#{info.name}"></th>
 							<th th:text="#{info.mail}"></th>
-							<!-- <th th:text="#{info.role}"></th> -->
-							<!-- <th th:text="#{info.enabled}"></th> -->
 							<th th:text="#{info.cpf}"></th>
 							<th th:text="#{info.tel}"></th>
 							<th th:text="#{info.sex}"></th>
@@ -41,7 +39,6 @@ xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
 					</thead>
 					<tbody>
 						<tr th:each="cliente : ${clientes}">
-							<td th:text="${cliente.id}"></td>
 							<td th:text="${cliente.nome}"></td>
 							<td th:text="${cliente.email}"></td>
 							<!-- <td th:text="${cliente.funcao}"></td> -->
@@ -52,15 +49,15 @@ xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
 							<td th:text="${cliente.dataNasc}"></td>
 							<div sec:authorize="hasRole('ROLE_ADMIN')">
 								<td colspan="2">
-									<a class="btn btn-info btn-sm" th:href="@{/clientes/editar/{id} (id=${cliente.id}) }"
+									<a class="btn btn-sm" th:href="@{/clientes/editar/{id} (id=${cliente.id}) }"
 										role="button"> 
-										<span class="oi oi-brush" title="Editar" aria-hidden="true"> </span>
+										<span>EDITAR</span>
 									</a>
 									<button
 										th:id="${'btn_clientes/excluir/' + cliente.id}"
-										type="button" class="btn btn-danger btn-sm"
+										type="button" class="btn btn-sm"
 										data-toggle="modal" data-target="#myModal">
-										<span class="oi oi-circle-x" title="Excluir" aria-hidden="true"></span>
+										<span>EXCLUIR</span>
 									</button>
 								</td>
 							</div>

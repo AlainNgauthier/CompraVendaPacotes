@@ -16,20 +16,19 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import br.ufscar.dc.dsw.domain.Client;
-import br.ufscar.dc.dsw.domain.Purchase;
+import br.ufscar.dc.dsw.domain.Compra;
 import br.ufscar.dc.dsw.domain.Pacote;
 import br.ufscar.dc.dsw.security.UsuarioDetails;
 import br.ufscar.dc.dsw.service.spec.IClientService;
-import br.ufscar.dc.dsw.service.spec.IPurchaseService;
+import br.ufscar.dc.dsw.service.spec.ICompraService;
 import br.ufscar.dc.dsw.service.spec.IPacoteService;
-
 
 @Controller
 @RequestMapping("/compras")
-public class PurchaseController {
+public class CompraController {
 	
 	@Autowired
-	private IPurchaseService service;
+	private ICompraService service;
 	
 	@Autowired
 	private IPacoteService PacoteService;
@@ -38,7 +37,7 @@ public class PurchaseController {
 	private IClientService ClienteService;
 	
 	@GetMapping("/cadastrar")
-	public String cadastrar(Purchase compra) {
+	public String cadastrar(Compra compra) {
 		compra.setCliente(this.getCliente());
 		return "compra/cadastro";
 	}
@@ -52,6 +51,7 @@ public class PurchaseController {
 	@GetMapping("/listar")
 	public String listar(ModelMap model) {			
 		model.addAttribute("compras",service.buscarTodosPorCliente(this.getCliente()));
+		
 		return "compra/lista";
 	}
 	
@@ -62,7 +62,7 @@ public class PurchaseController {
 			return "compra/cadastro";
 		}
 
-		Purchase compra = new Purchase();
+		Compra compra = new Compra();
 		
 		compra.setCliente(this.getCliente());
 		compra.setPacote(pacote);

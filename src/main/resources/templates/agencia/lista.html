@@ -8,6 +8,7 @@ xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
 	<body>
 		<section class="layout-content" layout:fragment="corpo">
 			<nav class="navbar navbar-expand-md bg-light">
+			<br/><br/><br/>
 				<div class="collapse navbar-collapse" id="navbarsExampleDefault">
 					<ul class="navbar-nav mr-auto">
 						<li class="nav-item active">
@@ -27,9 +28,8 @@ xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
 					<table class="table table-striped table-hover table-sm">
 						<thead>
 							<tr>
-								<th>#</th>
-								<th th:text="#{info.cnpj}"></th>
 								<th th:text="#{info.name}"></th>
+								<th th:text="#{info.cnpj}"></th>
 								<th th:text="#{info.description}"></th>
 								<div sec:authorize="hasRole('ROLE_ADMIN')">
 								<th th:text="#{action}"></th>
@@ -38,21 +38,20 @@ xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
 						</thead>
 						<tbody>
 							<tr th:each="agencia : ${agencias}">
-								<td th:text="${agencia.id}"></td>
-								<td th:text="${agencia.cnpj}"></td>
 								<td th:text="${agencia.nome}"></td>
+								<td th:text="${agencia.cnpj}"></td>
 								<td th:text="${agencia.descricao}"></td>
 								<div sec:authorize="hasRole('ROLE_ADMIN')">
 									<td colspan="2">
-										<a class="btn btn-info btn-sm" th:href="@{/agencias/editar/{id} (id=${agencia.id}) }"
+										<a class="btn btn-sm" th:href="@{/agencias/editar/{id} (id=${agencia.id}) }"
 											role="button"> 
-											<span class="oi oi-brush" title="Editar" aria-hidden="true"> </span>
+											<span>EDITAR </span>
 										</a>
 										<button
 											th:id="${'btn_agencias/excluir/' + agencia.id}"
-											type="button" class="btn btn-danger btn-sm"
+											type="button" class="btn btn-sm"
 											data-toggle="modal" data-target="#myModal">
-											<span class="oi oi-circle-x" title="Excluir" aria-hidden="true"></span>
+											<span>EXCLUIR</span>
 										</button>
 									</td>
 								</div>

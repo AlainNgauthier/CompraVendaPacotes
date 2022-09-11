@@ -36,7 +36,7 @@ public class Client extends User{
     private String dataNasc;
 
     @OneToMany(mappedBy = "cliente")
-    private List<Purchase> compras;
+    private List<Compra> compras;
 
     public String getCpf() {
         return this.cpf;
@@ -78,11 +78,11 @@ public class Client extends User{
         this.dataNasc = dataNasc;
     }
 
-    public List<Purchase> getCompra(){
+    public List<Compra> getCompra(){
         return this.compras;
     }
 
-    public void setCompra(List<Purchase> compras){
+    public void setCompra(List<Compra> compras){
         this.compras = compras;
     }
 
