@@ -13,7 +13,9 @@ Para compilar o projeto, execute o comando mvn spring-boot:run
 <br />
 Acesse o sistema no endereço localhost:8080
 <br />
-P.S. O trab 2 se encontra na branch principal (main).
+<br />
+<br />
+<b>P.S.</b> O trabalho 2 se encontra na branch principal, a <b>main</b>
 
 
 ## Trabalho 3: Sistema de compra/venda de pacotes turísticos
@@ -25,4 +27,6 @@ Para compilar o projeto, execute o comando mvn spring-boot:run
 <br />
 Acesse o sistema no endereço localhost:8081
 <br />
-P.S. O trabalho 3 se encontra na branch feature/rest-api-final.
+<br />
+<br />
+P.S. O trabalho 3 se encontra na branch <b>feature/rest-api-final</b>
