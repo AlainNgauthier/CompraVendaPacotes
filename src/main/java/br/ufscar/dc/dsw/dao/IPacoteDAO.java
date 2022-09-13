@@ -10,12 +10,12 @@ import br.ufscar.dc.dsw.domain.Pacote;
 
 @SuppressWarnings("unchecked")
 public interface IPacoteDAO extends CrudRepository<Pacote, Long>{
-    Pacote findById(long id);
-	Pacote save(Pacote pacote);
-	void deleteById(Long id);
 	List<Pacote> findAll();
+    Pacote findById(long id);
 	Pacote findAllByAgenciaId(Long agencia);
 	Pacote findAllByDestinos(String destinos);
+	Pacote save(Pacote pacote);
+	void deleteById(Long id);
 
 	@Query("SELECT c FROM Pacote c WHERE c.nome = :nome")
     public Pacote getPacoteByName(@Param("nome") String nome);

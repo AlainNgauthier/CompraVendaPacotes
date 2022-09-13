@@ -1,4 +1,5 @@
 package br.ufscar.dc.dsw.controller;
+
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -39,11 +40,11 @@ public class ClienteController {
 			return "cliente/cadastro";
 		}
 
-        Cliente cliente2 = cliente;
+		Cliente cliente2 = cliente;
 		cliente2.setSenha(encoder.encode(cliente.getSenha()));
 
         service.salvar(cliente2);
-		attr.addFlashAttribute("sucess", "Cliente inserido");
+		attr.addFlashAttribute("sucess", "Cliente inserido com sucesso.");
 		
         return "redirect:/clientes/listar";
     }
@@ -65,16 +66,15 @@ public class ClienteController {
 		cliente2.setSenha(encoder.encode(cliente.getSenha()));
 		
         service.salvar(cliente2);
-		attr.addFlashAttribute("sucess", "Cliente removido");
+		attr.addFlashAttribute("sucess", "Cliente editado com sucesso.");
 		return "redirect:/clientes/listar";
 	}
 
     @GetMapping("/excluir/{id}")
 	public String excluir(@PathVariable("id") Long id, ModelMap model) {
 		service.excluir(id);
-		model.addAttribute("sucess", "Cliente removido");
+		model.addAttribute("sucess", "Cliente excluído com sucesso.");
 		
 		return listar(model);
 	}
-
 }

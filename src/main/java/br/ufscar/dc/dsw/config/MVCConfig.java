@@ -2,7 +2,6 @@ package br.ufscar.dc.dsw.config;
 
 import java.util.Locale;
 
-
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;

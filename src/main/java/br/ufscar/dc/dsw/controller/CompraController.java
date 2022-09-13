@@ -1,9 +1,7 @@
 package br.ufscar.dc.dsw.controller;
 
 import java.util.List;
-
 import javax.validation.Valid;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -51,7 +49,6 @@ public class CompraController {
 	@GetMapping("/listar")
 	public String listar(ModelMap model) {			
 		model.addAttribute("compras",service.buscarTodosPorCliente(this.getCliente()));
-		
 		return "compra/lista";
 	}
 	
@@ -63,13 +60,12 @@ public class CompraController {
 		}
 
 		Compra compra = new Compra();
-		
 		compra.setCliente(this.getCliente());
 		compra.setPacote(pacote);
 		compra.setPreco(pacote.getPreco());
 		
 		service.salvar(compra);
-		
+
 		attr.addFlashAttribute("sucess", "Compra inserida com sucesso.");
 		return "redirect:/compras/listar";
 	}

@@ -1,5 +1,4 @@
 package br.ufscar.dc.dsw.config;
-
 import org.springframework.context.annotation.*;
 import org.springframework.security.authentication.dao.*;
 import org.springframework.security.config.annotation.authentication.builders.*;
@@ -7,9 +6,7 @@ import org.springframework.security.config.annotation.web.builders.*;
 import org.springframework.security.config.annotation.web.configuration.*;
 import org.springframework.security.core.userdetails.*;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-
 import br.ufscar.dc.dsw.security.UsuarioDetailsServiceImpl;
-
 
 
 @Configuration
@@ -43,7 +40,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 				http.csrf().disable().authorizeRequests()
-				// For REST
+				// REST
 				.antMatchers("/clientes", "/agencias", "/pacotes").permitAll()
 				.antMatchers("/clientes/{\\d+}", "/agencias/{\\d+}").permitAll()
 				.antMatchers("/pacotes/agencias/{\\d+}").permitAll()

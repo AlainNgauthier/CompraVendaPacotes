@@ -6,7 +6,6 @@ import org.springframework.stereotype.Component;
 import br.ufscar.dc.dsw.dao.IAgencyDAO;
 import br.ufscar.dc.dsw.domain.Agencia;
 
-
 @Component
 public class UniqueCNPJValidator implements ConstraintValidator<UniqueCNPJ, String> {
 

@@ -1,7 +1,6 @@
 package br.ufscar.dc.dsw.controller;
 
 import javax.validation.Valid;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -75,10 +74,10 @@ public class AgenciaController {
 	@GetMapping("/excluir/{id}")
 	public String excluir(@PathVariable("id") Long id, ModelMap model) {
 		if (service.temPacotes(id)) {
-			model.addAttribute("fail", "Agencia não removida. Há pacote(s) vinculado(s).");
+			model.addAttribute("fail", "Agencia não excluída. Possui pacote(s) vinculado(s).");
 		} else {
 			service.excluir(id);
-			model.addAttribute("sucess", "Agencia removida.");
+			model.addAttribute("sucess", "Agencia excluída com sucesso.");
 		}
 		return listar(model);
 	}
