@@ -31,4 +31,9 @@ public class CompraService implements ICompraService {
 	public List<Compra> buscarTodosPorCliente(Cliente c) {
 		return dao.findAllByCliente(c);
 	}
+	
+	@Transactional(readOnly = true)
+	public List<Compra> buscarTodosPorClienteId(Long id) {
+		return dao.findAllByClienteId(id);
+	}
 }

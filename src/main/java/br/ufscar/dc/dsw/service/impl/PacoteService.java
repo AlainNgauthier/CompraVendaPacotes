@@ -33,5 +33,15 @@ public class PacoteService implements IPacoteService{
 	public List<Pacote> buscarTodos() {
 		return dao.findAll();
 	}
+	
+	@Transactional(readOnly = true)
+	public Pacote buscarTodosPorAgencia(Long id) {
+		return dao.findAllByAgenciaId(id);
+	}
+
+	@Transactional(readOnly = true)
+	public Pacote buscarTodosPorDestinos(String destinos) {
+		return dao.findAllByDestinos(destinos);
+	}
 
 }

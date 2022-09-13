@@ -9,10 +9,8 @@ import br.ufscar.dc.dsw.domain.Cliente;
 
 @SuppressWarnings("unchecked")
 public interface ICompraDAO extends CrudRepository<Compra, Long>{
-
 	Compra findById(long id);
-
 	List<Compra> findAllByCliente(Cliente c);
-	
+	List<Compra> findAllByClienteId(long id);
 	Compra save(Compra compra);
 }

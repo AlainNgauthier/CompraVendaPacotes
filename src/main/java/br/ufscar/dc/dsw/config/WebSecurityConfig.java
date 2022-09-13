@@ -7,6 +7,7 @@ import org.springframework.security.config.annotation.web.builders.*;
 import org.springframework.security.config.annotation.web.configuration.*;
 import org.springframework.security.core.userdetails.*;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+
 import br.ufscar.dc.dsw.security.UsuarioDetailsServiceImpl;
 
 
@@ -41,7 +42,14 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-				http.authorizeRequests()
+				http.csrf().disable().authorizeRequests()
+				// For REST
+				.antMatchers("/clientes", "/agencias", "/pacotes").permitAll()
+				.antMatchers("/clientes/{\\d+}", "/agencias/{\\d+}").permitAll()
+				.antMatchers("/pacotes/agencias/{\\d+}").permitAll()
+				.antMatchers("/pacotes/clientes/{\\d+}").permitAll()
+				.antMatchers("/pacotes/destinos/{\\w+}").permitAll()
+				// 
 				.antMatchers("/error", "/login/**", "/js/**", "/css/**", "/image/**", "/webjars/**", "/agencias/listar", "/pacotes/listar").permitAll()
 				.antMatchers("/pacotes/cadastrar", "/pacotes/editar/**", "/pacotes/excluir/**", "/pacotes/salvar/**").hasAnyRole("AGENCIA", "ADMIN")
 				.antMatchers("/clientes/**", "/agencias/**", "/pacotes/**").hasRole("ADMIN")
