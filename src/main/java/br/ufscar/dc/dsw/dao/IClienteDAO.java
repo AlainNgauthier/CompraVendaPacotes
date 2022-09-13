@@ -10,8 +10,8 @@ import br.ufscar.dc.dsw.domain.Cliente;
 public interface IClienteDAO extends CrudRepository<Cliente, Long>{
     Cliente findById(long id);
     Cliente findByCpf(String cpf);
-    List<Cliente> findAll();
 	Cliente save(Cliente agencia);
+	List<Cliente> findAll();
 	void deleteById(Long id);
     
     @Query("SELECT c FROM Cliente c WHERE c.email = :email")
